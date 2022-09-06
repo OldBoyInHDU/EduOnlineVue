@@ -205,12 +205,15 @@ export default {
     },
     methods: {
         show(index) {
-            this.$Modal.info({
-                title: 'User Info',
-                content: `Name：${this.form_list_content[index].storagePath}<br>
-                            // Age：${this.form_list_content[index].age}<br>
-                            // Address：${this.form_list_content[index].address}`,
-            })
+            let path = this.form_list_content[index].storagePath
+            console.log(path)
+            window.open('http://localhost:8082/filestore/' + path, '_blank')
+            // this.$Modal.info({
+            //     title: 'User Info',
+            //     content: `Name：${this.form_list_content[index].storagePath}<br>
+            //                 // Age：${this.form_list_content[index].age}<br>
+            //                 // Address：${this.form_list_content[index].address}`,
+            // })
         },
         remove(index) {
             let paramId = this.form_list_content[index].id
