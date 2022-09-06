@@ -25,7 +25,9 @@
                 <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
             <Input v-model="title" placeholder="请输入文档标题" style="width: 300px;padding-left: 20px" clearable/>
-            <Button type="primary" @click="search">查询</Button>
+            <span style="padding-left: 20px">
+                <Button type="primary" @click="search">查询</Button>
+            </span>
             <div class="form-content" style="padding-top: 20px">
                 <Table border :columns="form_header" :data="form_list_content" :loading="loading">
                     <template slot-scope="{ row }" slot="name">

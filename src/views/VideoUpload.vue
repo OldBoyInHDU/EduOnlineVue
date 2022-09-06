@@ -153,7 +153,6 @@ export default {
             ],
             loadingStatus: false,
             position: '',
-            model1: '',
             file: null,
             filename: '',
             serverFileName: '',
