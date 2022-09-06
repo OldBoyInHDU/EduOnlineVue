@@ -1,10 +1,6 @@
 <template>
-    <div class="home-container">
-        <div class="home-content">
-            <Button @click="getUserData">ajax 测试</Button>
-
-            <Input :rows="30" style="margin-top: 20px" v-model="userInfo" type="textarea" />
-        </div>
+    <div style="padding: 20px">
+        欢迎使用宁波卷烟厂制丝车间在线教育平台
     </div>
 </template>
 

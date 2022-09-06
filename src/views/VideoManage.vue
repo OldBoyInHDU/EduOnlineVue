@@ -1,7 +1,7 @@
 <template>
     <div class="home-container">
         <div class="searchParam" style="padding: 20px">
-            <Select v-model="model7" style="width:200px" placeholder="请选择岗位" clearable="true">
+            <Select v-model="position" style="width:200px" placeholder="请选择岗位" clearable>
                 <OptionGroup label="1 片叶">
                     <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
@@ -21,13 +21,10 @@
                     <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
             </Select>
-<!--            <Select v-model="model1" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable="true">
-                <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>-->
-            <Input v-model="value" placeholder="请输入视频标题" style="width: 300px;padding-left: 20px" clearable="true"/>
-            <Button type="primary" >查询</Button>
+            <Input v-model="title" placeholder="请输入文档标题" style="width: 300px;padding-left: 20px" clearable/>
+            <Button type="primary" @click="search">查询</Button>
             <div class="form-content" style="padding-top: 20px">
-                <Table border :columns="columns12" :data="data6">
+                <Table border :columns="form_header" :data="form_list_content" :loading="loading">
                     <template slot-scope="{ row }" slot="name">
                         <strong>{{ row.name }}</strong>
                     </template>
@@ -37,36 +34,38 @@
                     </template>
                 </Table>
                 <br>
-                <Page :total="100" show-sizer show-elevator/>
+                <Page :total="total" :current="page" @on-change="changePage" :page-size="pageSize" show-elevator/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'videoManage',
     data() {
         return {
             unit_pianye_posList: [
                 {
-                    value: '1-1_kaixiang',
+                    value: '片叶_开箱',
                     label: '1-1 开箱',
                 },
                 {
-                    value: '1-2_huichao',
+                    value: '片叶_回潮',
                     label: '1-2 回潮',
                 },
                 {
-                    value: '1-3_fengxuan',
+                    value: '片叶_风选',
                     label: '1-3 风选',
                 },
                 {
-                    value: '1-4_jialiao',
+                    value: '片叶_加料',
                     label: '1-4 加料',
                 },
                 {
-                    value: '1-5_tangliaochufang',
+                    value: '片叶_糖料厨房',
                     label: '1-5 糖料厨房',
                 },
             ],
@@ -140,33 +139,24 @@ export default {
                     label: '6-3',
                 },
             ],
-            model7: '岗位',
-            model1: '',
-            docTypeList: [
-                {
-                    value: 'operation_instruction',
-                    label: '作业指导书',
-                },
-                {
-                    value: 'process_index',
-                    label: '工艺指标',
-                },
-            ],
-            value: '',
-            columns12: [
+            position: '',
+            loading: false,
+            title: '', // 文档标题
+            page: 1, // 当前页
+            pageSize: 10, // 一页展示10条数据
+            total: 0, // 数据总条数
+            form_header: [
                 {
                     title: '序号',
-                    key: 'rank',
+                    // key: 'id',
+                    type: 'index',
                     width: 75,
+                    render: (h, params) => h('span', {}, params.index + 1),
                 },
                 {
                     title: '视频标题',
-                    key: 'videoName',
+                    key: 'videoFileName',
                 },
-                // {
-                //     title: '文档类别',
-                //     key: 'docType',
-                // },
                 {
                     title: '工段',
                     key: 'unit',
@@ -181,7 +171,7 @@ export default {
                 },
                 {
                     title: '上传时间',
-                    key: 'uploadTime',
+                    key: 'uploadDate',
                 },
                 {
                     title: '操作',
@@ -190,28 +180,77 @@ export default {
                     align: 'center',
                 },
             ],
-            data6: [
-                {
-                    rank: 1,
-                    videoName: '开箱操作工教学视频',
-                    // docType: '作业指导书',
-                    unit: '片叶',
-                    position: '开箱操作工',
-                    storagePath: 'doc/zuoyezhidao',
-                    uploadTime: '2022-08-01',
-                },
-            ],
+            form_list_content: [], // 当前展示的数据
+            form_total_content: [], // 一次性请求的所有数据
         }
     },
     methods: {
         show(index) {
-            this.$Modal.info({
-                title: 'User Info',
-                content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`,
-            })
+            let path = this.form_list_content[index].storagePath
+            console.log(path)
+            window.open('http://localhost:8082/filestore/' + path, '_blank')
+            // this.$Modal.info({
+            //     title: 'User Info',
+            //     content: `Name：${this.form_list_content[index].storagePath}<br>
+            //                 // Age：${this.form_list_content[index].age}<br>
+            //                 // Address：${this.form_list_content[index].address}`,
+            // })
         },
         remove(index) {
-            this.data6.splice(index, 1)
+            let paramId = this.form_list_content[index].id
+            this.form_list_content.splice(index, 1)
+            // console.log('index' + index)
+            // console.log('paramId' + paramId)
+            axios.delete('http://localhost:8082/positionLearning/videoManage/deleteVideoInfo', {
+                params: {
+                    id: paramId,
+                },
+            }).then(
+                res => {
+                    console.log(res)
+                },
+                err => {
+                    console.log(err)
+                    this.$Message.error('后台服务出问题，请联系技术人员')
+                }
+            )
+        },
+        search() {
+            let that = this
+            axios({
+                method: 'get',
+                url: 'http://localhost:8082/positionLearning/videoManage/getVideoInfoByPosOrTitle',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                params: {
+                    pos: this.position,
+                    title: this.title,
+                },
+            }).then(res => {
+                console.log('成功了')
+                console.log(res)
+                that.total = res.data.data.length
+                that.form_total_content = res.data.data
+                that.form_list_content = that.form_total_content.slice(
+                    (that.page - 1) * that.pageSize,
+                    that.page * that.pageSize
+                )
+            }, err => {
+                console.log('错误了')
+                console.log(err)
+                this.$Message.error('后台服务出问题，请联系技术人员')
+            })
+        },
+        changePage(page) {
+            let that = this
+            if (page) {
+                that.page = page
+            }
+            that.form_list_content = that.form_total_content.slice(
+                (that.page - 1) * that.pageSize,
+                that.page * that.pageSize
+            )
         },
     },
 }

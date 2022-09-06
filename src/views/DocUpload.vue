@@ -21,37 +21,37 @@
                     </div>
                 </div>
             </div>
-        <div class="searchParam" style="padding: 20px">
-            <Select v-model="position" style="width:200px" placeholder="请选择岗位" clearable>
-                <OptionGroup label="1 片叶">
-                    <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-                <OptionGroup label="2 烘丝">
-                    <Option v-for="item in unit_hongsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-                <OptionGroup label="3 参培加香">
-                    <Option v-for="item in unit_canpeijiaxiang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-                <OptionGroup label="4 膨胀">
-                    <Option v-for="item in unit_pengzhang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-                <OptionGroup label="5 梗丝">
-                    <Option v-for="item in unit_gengsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-                <OptionGroup label="6 残烟间">
-                    <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-            </Select>
-            <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>
-                <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-            <Input v-model="serverFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 20px" disabled/>
-            <span style="padding-left: 20px">
-                <Button type="primary" @click="submit">提交</Button>
-            </span>
-<!--            <div>{{ position}}</div>-->
-<!--            <div>{{ type }}</div>-->
-        </div>
+            <div class="searchParam" style="padding: 20px">
+                <Select v-model="position" style="width:200px" placeholder="请选择岗位" clearable>
+                    <OptionGroup label="1 片叶">
+                        <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </OptionGroup>
+                    <OptionGroup label="2 烘丝">
+                        <Option v-for="item in unit_hongsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </OptionGroup>
+                    <OptionGroup label="3 参培加香">
+                        <Option v-for="item in unit_canpeijiaxiang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </OptionGroup>
+                    <OptionGroup label="4 膨胀">
+                        <Option v-for="item in unit_pengzhang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </OptionGroup>
+                    <OptionGroup label="5 梗丝">
+                        <Option v-for="item in unit_gengsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </OptionGroup>
+                    <OptionGroup label="6 残烟间">
+                        <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </OptionGroup>
+                </Select>
+                <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>
+                    <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                <Input v-model="serverFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 20px" disabled/>
+                <span style="padding-left: 20px">
+                    <Button type="primary" @click="submit">提交</Button>
+                </span>
+    <!--            <div>{{ position}}</div>-->
+    <!--            <div>{{ type }}</div>-->
+            </div>
     </div>
 </template>
 
