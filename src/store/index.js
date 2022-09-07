@@ -95,6 +95,14 @@ const store = new Vuex.Store({
                 hidden: true,
                 children: [
                     {
+                        size: 18, // icon大小
+                        type: 'ios-document', // icon类型
+                        name: 'pageManage',
+                        text: '页面查询',
+                        // url: 'https://www.baidu.com',
+                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
+                    },
+                    {
                         size: 18,
                         type: 'ios-grid',
                         name: 't1',
