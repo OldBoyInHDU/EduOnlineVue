@@ -149,6 +149,7 @@ export default {
                     type: 'index',
                     width: 75,
                     render: (h, params) => h('span', {}, params.index + 1),
+                    fixed: 'left',
                 },
                 {
                     title: '工段',
@@ -164,19 +165,32 @@ export default {
                 },
                 {
                     title: '作业指导书',
-                    key: 'workManualAddr',
+                    key: 'docFileName',
+                },
+                {
+                    title: '作业指导书地址',
+                    key: 'docStoragePath',
                 },
                 {
                     title: 'SOC文档',
-                    key: 'socManualAddr',
+                    key: 'socFileName',
+                },
+                {
+                    title: 'SOC文档地址',
+                    key: 'socStoragePath',
                 },
                 {
                     title: '教学视频',
-                    key: 'toturialVideoAddr',
+                    key: 'videoFileName',
+                },
+                {
+                    title: '视频地址',
+                    key: 'videoStoragePath',
                 },
                 {
                     title: '最近更新时间',
                     key: 'lastUpdateDate',
+                    fixed: 'right',
                 },
             ],
             form_list_content: [], // 当前展示的数据
