@@ -97,8 +97,16 @@ const store = new Vuex.Store({
                     {
                         size: 18, // icon大小
                         type: 'ios-document', // icon类型
+                        name: 'pageUpload',
+                        text: '资料上传',
+                        // url: 'https://www.baidu.com',
+                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
+                    },
+                    {
+                        size: 18, // icon大小
+                        type: 'ios-document', // icon类型
                         name: 'pageManage',
-                        text: '页面查询',
+                        text: '资料查询',
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },

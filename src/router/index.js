@@ -93,6 +93,18 @@ export const asyncRoutes = {
         meta: { title: '课件管理' },
         component: () => import('../views/CoursewareManage.vue'),
     },
+    pageManage: {
+        path: 'pageManage',
+        name: 'pageManage',
+        meta: { title: '资料管理' },
+        component: () => import('../views/PageManage.vue'),
+    },
+    pageUpload: {
+        path: 'pageUpload',
+        name: 'pageUpload',
+        meta: { title: '资料上传' },
+        component: () => import('../views/PageUpload.vue'),
+    },
 }
 
 const createRouter = () => new Router({

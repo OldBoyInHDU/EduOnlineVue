@@ -42,9 +42,9 @@
                         <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </OptionGroup>
                 </Select>
-                <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>
-                    <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+<!--                <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>-->
+<!--                    <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+<!--                </Select>-->
                 <Input v-model="serverFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 20px" disabled/>
                 <span style="padding-left: 20px">
                     <Button type="primary" @click="submit">提交</Button>
@@ -224,7 +224,7 @@ export default {
         submit() {
             let formData = new FormData()
             formData.append('position', this.position)
-            formData.append('type', this.type)
+            // formData.append('type', this.type)
             formData.append('serverFileName', this.serverFileName)
             axios({
                 method: 'post',
@@ -237,7 +237,7 @@ export default {
                 // console.log('成功了')
                 this.$Message.success('提交成功')
                 this.position = ''
-                this.type = ''
+                // this.type = ''
                 this.serverFileName = ''
                 this.file = null
             }, err => {

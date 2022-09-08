@@ -21,9 +21,9 @@
                     <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
             </Select>
-            <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>
-                <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
+<!--            <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>-->
+<!--                <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
+<!--            </Select>-->
             <Input v-model="title" placeholder="请输入文档标题" style="width: 300px;padding-left: 20px" clearable/>
             <span style="padding-left: 20px">
                 <Button type="primary" @click="search">查询</Button>
@@ -174,10 +174,10 @@ export default {
                     title: '文档标题',
                     key: 'docFileName',
                 },
-                {
-                    title: '文档类别',
-                    key: 'docFileType',
-                },
+                // {
+                //     title: '文档类别',
+                //     key: 'docFileType',
+                // },
                 {
                     title: '工段',
                     key: 'unit',
@@ -240,13 +240,13 @@ export default {
             let that = this
             axios({
                 method: 'get',
-                url: 'http://localhost:8082/positionLearning/docManage/getDocByPosOrTypeOrTitle',
+                url: 'http://localhost:8082/positionLearning/docManage/getDocByPosOrTitle',
                 headers: {
                     'content-type': 'application/json',
                 },
                 params: {
                     pos: this.position,
-                    type: this.type,
+                    // type: this.type,
                     title: this.title,
                 },
             }).then(res => {
