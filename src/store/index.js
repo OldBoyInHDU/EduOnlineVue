@@ -19,10 +19,27 @@ const store = new Vuex.Store({
                 type: 'ios-book',
                 children: [
                     {
+                        size: 18, // icon大小
+                        type: 'ios-document', // icon类型
+                        name: 'pageUpload',
+                        text: '资料上传',
+                        // url: 'https://www.baidu.com',
+                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
+                    },
+                    {
+                        size: 18, // icon大小
+                        type: 'ios-document', // icon类型
+                        name: 'pageManage',
+                        text: '资料查询',
+                        // url: 'https://www.baidu.com',
+                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
+                    },
+                    {
                         size: 18,
                         type: 'ios-cloud-upload',
                         name: 'docUpload',
                         text: '文档上传',
+                        hidden: true,
                         // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
                         //
                     },
@@ -39,6 +56,7 @@ const store = new Vuex.Store({
                         type: 'ios-cloud-upload', // icon类型
                         name: 'videoUpload',
                         text: '视频上传',
+                        hidden: true,
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },
@@ -94,22 +112,6 @@ const store = new Vuex.Store({
                 type: 'ios-settings',
                 hidden: true,
                 children: [
-                    {
-                        size: 18, // icon大小
-                        type: 'ios-document', // icon类型
-                        name: 'pageUpload',
-                        text: '资料上传',
-                        // url: 'https://www.baidu.com',
-                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
-                    },
-                    {
-                        size: 18, // icon大小
-                        type: 'ios-document', // icon类型
-                        name: 'pageManage',
-                        text: '资料查询',
-                        // url: 'https://www.baidu.com',
-                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
-                    },
                     {
                         size: 18,
                         type: 'ios-grid',

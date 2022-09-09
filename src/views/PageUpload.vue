@@ -7,13 +7,21 @@
         <input class="file-input" type="file" @change="getDocFile($event)" />
         <Button type="primary" @click="uploadDoc" :loading="loadingStatus1">{{ loadingStatus1 ? '上传中' : '上传文件' }}</Button>
         <Input v-model="docServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
+<!--        <h3>过程控制要求：</h3>-->
+<!--        <input class="file-input" type="file" @change="getProcessFile($event)" />-->
+<!--        <Button type="primary" @click="uploadProcess" :loading="loadingStatus2">{{ loadingStatus2 ? '上传中' : '上传文件' }}</Button>-->
+<!--        <Input v-model="docProcessServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>-->
+<!--        <h3>工艺质量指标：</h3>-->
+<!--        <input class="file-input" type="file" @change="getIndexFile($event)" />-->
+<!--        <Button type="primary" @click="uploadIndex" :loading="loadingStatus3">{{ loadingStatus3 ? '上传中' : '上传文件' }}</Button>-->
+<!--        <Input v-model="docIndexServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>-->
         <h3>SOC文档：</h3>
         <input class="file-input" type="file" @change="getSOCFile($event)" />
-        <Button type="primary" @click="uploadSOC" :loading="loadingStatus2">{{ loadingStatus2 ? '上传中' : '上传文件' }}</Button>
+        <Button type="primary" @click="uploadSOC" :loading="loadingStatus4">{{ loadingStatus4 ? '上传中' : '上传文件' }}</Button>
         <Input v-model="socServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
         <h3>教学视频：</h3>
         <input class="file-input" type="file" @change="getVidFile($event)" />
-        <Button type="primary" @click="uploadVideo" :loading="loadingStatus3">{{ loadingStatus3 ? '上传中' : '上传文件' }}</Button>
+        <Button type="primary" @click="uploadVideo" :loading="loadingStatus5">{{ loadingStatus5 ? '上传中' : '上传文件' }}</Button>
         <Input v-model="vidServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
         <h3>工段岗位：</h3>
         <Select v-model="position" style="width:200px; margin: 20px" placeholder="请选择岗位" clearable>
@@ -145,17 +153,25 @@ export default {
             loadingStatus1: false,
             loadingStatus2: false,
             loadingStatus3: false,
+            loadingStatus4: false,
+            loadingStatus5: false,
             position: '',
             type: '',
             file1: null,
             file2: null,
             file3: null,
+            file4: null,
+            file5: null,
             filename1: '',
             filename2: '',
             filename3: '',
+            filename4: '',
+            filename5: '',
             file: null,
             filename: '',
             docServerFileName: '',
+            docProcessServerFileName: '',
+            docIndexServerFileName: '',
             socServerFileName: '',
             vidServerFileName: '',
             posResponsibility: '',
@@ -169,18 +185,30 @@ export default {
             console.log(this.file1.name)
         },
         // 选取文件
-        getSOCFile(event) {
+        getProcessFile(event) {
             this.file2 = event.target.files[0]
             this.filename2 = this.file2.name
             console.log(this.file2.name)
         },
         // 选取文件
-        getVidFile(event) {
+        getIndexFile(event) {
             this.file3 = event.target.files[0]
             this.filename3 = this.file3.name
             console.log(this.file3.name)
         },
-        // 上传文件(POST)
+        // 选取文件
+        getSOCFile(event) {
+            this.file4 = event.target.files[0]
+            this.filename4 = this.file4.name
+            console.log(this.file4.name)
+        },
+        // 选取文件
+        getVidFile(event) {
+            this.file5 = event.target.files[0]
+            this.filename5 = this.file5.name
+            console.log(this.file5.name)
+        },
+        // 上传文件 doc 作业指导书
         uploadDoc() {
             let uncheckedFile = this.file1
             if (uncheckedFile == null) {
@@ -214,7 +242,8 @@ export default {
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
-        uploadSOC() {
+        // 上传文件 process过程控制要求
+        uploadProcess() {
             let uncheckedFile = this.file2
             if (uncheckedFile == null) {
                 this.$Message.error('未选择文件！请先选择文件！')
@@ -240,6 +269,73 @@ export default {
                 // console.log('成功了')
                 console.log(res)
                 this.loadingStatus2 = false
+                this.docProcessServerFileName = this.filename + ' / ' + res.data.data
+            }, err => {
+                // console.log('错误了')
+                console.log(err)
+                this.$Message.error('后台服务出问题，请联系技术人员')
+            })
+        },
+        // 上传文件 index 工艺指标
+        uploadIndex() {
+            let uncheckedFile = this.file3
+            if (uncheckedFile == null) {
+                this.$Message.error('未选择文件！请先选择文件！')
+                return
+            }
+            let isRight = this.beforeUploadDoc(uncheckedFile)
+            if (!isRight) {
+                this.$Message.error('请重新上传文件')
+                return
+            }
+            let checkedFile = uncheckedFile
+            let formData = new FormData()
+            formData.append('file', checkedFile)
+            this.loadingStatus3 = true
+            axios({
+                method: 'post',
+                url: 'http://localhost:8082/positionLearning/docUpload/uploadDoc',
+                headers: {
+                    'content-type': 'multipart/form-data',
+                },
+                data: formData,
+            }).then(res => {
+                // console.log('成功了')
+                console.log(res)
+                this.loadingStatus3 = false
+                this.docIndexServerFileName = this.filename + ' / ' + res.data.data
+            }, err => {
+                // console.log('错误了')
+                console.log(err)
+                this.$Message.error('后台服务出问题，请联系技术人员')
+            })
+        },
+        uploadSOC() {
+            let uncheckedFile = this.file4
+            if (uncheckedFile == null) {
+                this.$Message.error('未选择文件！请先选择文件！')
+                return
+            }
+            let isRight = this.beforeUploadDoc(uncheckedFile)
+            if (!isRight) {
+                this.$Message.error('请重新上传文件')
+                return
+            }
+            let checkedFile = uncheckedFile
+            let formData = new FormData()
+            formData.append('file', checkedFile)
+            this.loadingStatus4 = true
+            axios({
+                method: 'post',
+                url: 'http://localhost:8082/positionLearning/docUpload/uploadDoc',
+                headers: {
+                    'content-type': 'multipart/form-data',
+                },
+                data: formData,
+            }).then(res => {
+                // console.log('成功了')
+                console.log(res)
+                this.loadingStatus4 = false
                 this.socServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
@@ -248,7 +344,7 @@ export default {
             })
         },
         uploadVideo() {
-            let uncheckedFile = this.file3
+            let uncheckedFile = this.file5
             if (uncheckedFile == null) {
                 this.$Message.error('未选择文件！请先选择文件！')
                 return
@@ -260,7 +356,7 @@ export default {
             }
             let formData = new FormData()
             formData.append('file', this.file)
-            this.loadingStatus3 = true
+            this.loadingStatus5 = true
             axios({
                 method: 'post',
                 url: 'http://localhost:8082/positionLearning/videoUpload/uploadVideo',
@@ -271,7 +367,7 @@ export default {
             }).then(res => {
                 // console.log('成功了')
                 console.log(res)
-                this.loadingStatus3 = false
+                this.loadingStatus5 = false
                 this.vidServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
