@@ -29,7 +29,7 @@
                 <Button type="primary" @click="search">查询</Button>
             </span>
             <div class="form-content" style="padding-top: 20px">
-                <Table border :columns="form_header" :data="form_list_content" :loading="loading">
+                <Table border :columns="form_header" :data="form_list_content" :loading="loading" height="600">
                     <template slot-scope="{ row }" slot="name">
                         <strong>{{ row.name }}</strong>
                     </template>
@@ -54,8 +54,8 @@ export default {
         return {
             unit_pianye_posList: [
                 {
-                    value: '片叶_开箱',
-                    label: '1-1 开箱',
+                    value: '片叶_解包',
+                    label: '1-1 解包',
                 },
                 {
                     value: '片叶_回潮',
@@ -240,7 +240,7 @@ export default {
             let that = this
             axios({
                 method: 'get',
-                url: 'http://localhost:8082/positionLearning/docManage/getDocByPosOrTitle',
+                url: 'positionLearning/docManage/getDocByPosOrTitle',
                 headers: {
                     'content-type': 'application/json',
                 },

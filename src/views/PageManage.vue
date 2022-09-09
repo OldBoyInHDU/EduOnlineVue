@@ -1,6 +1,6 @@
 <template>
-    <div class="home-container">
-        <div class="searchParam" style="padding: 20px">
+    <div class="home-container" >
+        <div class="searchParam" style="padding: 20px;">
             <Select v-model="position" style="width:200px" placeholder="请选择岗位" clearable>
                 <OptionGroup label="1 片叶">
                     <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
@@ -26,7 +26,7 @@
                 <Button type="primary" @click="search">查询</Button>
             </span>
             <div class="form-content" style="padding-top: 20px">
-                <Table border :columns="form_header" :data="form_list_content" :loading="loading">
+                <Table border :columns="form_header" :data="form_list_content" :loading="loading" height="600">
                     <template slot-scope="{ row }" slot="name">
                         <strong>{{ row.name }}</strong>
                     </template>
@@ -202,7 +202,7 @@ export default {
             let that = this
             axios({
                 method: 'get',
-                url: 'http://localhost:8082/page/getPageInfo',
+                url: 'page/getPageInfo',
                 headers: {
                     'content-type': 'application/json',
                 },

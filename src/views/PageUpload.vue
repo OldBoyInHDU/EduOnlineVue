@@ -226,7 +226,7 @@ export default {
             this.loadingStatus1 = true
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/positionLearning/docUpload/uploadDoc',
+                url: 'positionLearning/docUpload/uploadDoc',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -260,7 +260,7 @@ export default {
             this.loadingStatus2 = true
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/positionLearning/docUpload/uploadDoc',
+                url: 'positionLearning/docUpload/uploadDoc',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -294,7 +294,7 @@ export default {
             this.loadingStatus3 = true
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/positionLearning/docUpload/uploadDoc',
+                url: 'positionLearning/docUpload/uploadDoc',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -327,7 +327,7 @@ export default {
             this.loadingStatus4 = true
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/positionLearning/docUpload/uploadDoc',
+                url: 'positionLearning/docUpload/uploadDoc',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -359,7 +359,7 @@ export default {
             this.loadingStatus5 = true
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/positionLearning/videoUpload/uploadVideo',
+                url: 'positionLearning/videoUpload/uploadVideo',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -424,7 +424,7 @@ export default {
             formData.append('posResponsibility', this.posResponsibility)
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/page/submitPageInfo',
+                url: 'page/submitPageInfo',
                 headers: {
                     'content-type': 'application/json',
                 },
