@@ -31,7 +31,7 @@
             <OptionGroup label="2 烘丝">
                 <Option v-for="item in unit_hongsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
-            <OptionGroup label="3 参培加香">
+            <OptionGroup label="3 掺配加香">
                 <Option v-for="item in unit_canpeijiaxiang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
             <OptionGroup label="4 膨胀">
@@ -41,7 +41,7 @@
                 <Option v-for="item in unit_gengsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
             <OptionGroup label="6 残烟间">
-                <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
         </Select>
         <h3>岗位职责：</h3>
@@ -58,98 +58,12 @@ export default {
     name: 'attendPoint',
     data() {
         return {
-            unit_pianye_posList: [
-                {
-                    value: '片叶_解包',
-                    label: '1-1 解包',
-                },
-                {
-                    value: '片叶_回潮',
-                    label: '1-2 回潮',
-                },
-                {
-                    value: '片叶_风选',
-                    label: '1-3 风选',
-                },
-                {
-                    value: '片叶_加料',
-                    label: '1-4 加料',
-                },
-                {
-                    value: '片叶_糖料厨房',
-                    label: '1-5 糖料厨房',
-                },
-            ],
-            unit_hongsi_posList: [
-                {
-                    value: '2-1',
-                    label: '2-1',
-                },
-                {
-                    value: '2-2',
-                    label: '2-2',
-                },
-                {
-                    value: '2-3',
-                    label: '2-3',
-                },
-            ],
-            unit_canpeijiaxiang_posList: [
-                {
-                    value: '3-1',
-                    label: '3-1',
-                },
-                {
-                    value: '3-2',
-                    label: '3-2',
-                },
-                {
-                    value: '3-3',
-                    label: '3-3',
-                },
-            ],
-            unit_pengzhang_posList: [
-                {
-                    value: '4-1',
-                    label: '4-1',
-                },
-                {
-                    value: '4-2',
-                    label: '4-2',
-                },
-                {
-                    value: '4-3',
-                    label: '4-3',
-                },
-            ],
-            unit_gengsi_posList: [
-                {
-                    value: '5-1',
-                    label: '5-1',
-                },
-                {
-                    value: '5-2',
-                    label: '5-2',
-                },
-                {
-                    value: '5-3',
-                    label: '5-3',
-                },
-            ],
-            unit_tangliaochufang_posList: [
-                {
-                    value: '6-1',
-                    label: '6-1',
-                },
-                {
-                    value: '6-2',
-                    label: '6-2',
-                },
-                {
-                    value: '6-3',
-                    label: '6-3',
-                },
-            ],
+            unit_pianye_posList: [],
+            unit_hongsi_posList: [],
+            unit_canpeijiaxiang_posList: [],
+            unit_pengzhang_posList: [],
+            unit_gengsi_posList: [],
+            unit_canyanjian_posList: [],
             loadingStatus1: false,
             loadingStatus2: false,
             loadingStatus3: false,
@@ -178,6 +92,29 @@ export default {
         }
     },
     methods: {
+        getPositionList() {
+            let that = this
+            axios({
+                method: 'get',
+                url: 'position/getPositionList',
+                headers: {
+                    'content-type': 'application/json',
+                },
+            }).then(res => {
+                console.log('成功了')
+                console.log(res)
+                that.unit_pianye_posList = res.data.data.unit_pianye_posList
+                that.unit_hongsi_posList = res.data.data.unit_hongsi_posList
+                that.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
+                that.unit_pengzhang_posList = res.data.data.unit_pengzhang_posList
+                that.unit_gengsi_posList = res.data.data.unit_gengsi_posList
+                that.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
+            }, err => {
+                console.log('错误了')
+                console.log(err)
+                this.$Message.error('后台服务出问题，请联系技术人员')
+            })
+        },
         // 选取文件
         getDocFile(event) {
             this.file1 = event.target.files[0]
@@ -449,6 +386,9 @@ export default {
                 this.$Message.error('提交失败，请联系技术人员')
             })
         },
+    },
+    created() {
+        this.getPositionList()
     },
 }
 </script>
