@@ -204,8 +204,8 @@ export default {
         })
 
         // 设置用户信息
-        this.userName = localStorage.getItem('userName')
-        this.userImg = localStorage.getItem('userImg')
+        this.userName = sessionStorage.getItem('userName')
+        this.userImg = sessionStorage.getItem('userImg')
 
         this.main = document.querySelector('.sec-right')
         this.asideArrowIcons = document.querySelectorAll('aside .ivu-icon-ios-arrow-down')
