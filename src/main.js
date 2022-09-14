@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 Vue.use(ViewUI)
 
 Vue.prototype.$axios = axios
-axios.defaults.baseURL = 'http://localhost:8082/'
+axios.defaults.baseURL = 'http://localhost:8080/eduonline'
 
 new Vue({
     el: '#app',
