@@ -79,12 +79,12 @@ export default {
                 data: formData,
             }).then(res => {
                 // console.log('成功了')
-                console.log(res)
+                // console.log(res)
                 this.loadingStatus = false
                 this.serverFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
             // setTimeout(() => {
@@ -115,7 +115,7 @@ export default {
                 this.file = null
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('提交失败，请联系技术人员')
             })
         },

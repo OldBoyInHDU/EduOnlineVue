@@ -110,8 +110,8 @@ export default {
                     'content-type': 'application/json',
                 },
             }).then(res => {
-                console.log('成功了')
-                console.log(res)
+                // console.log('成功了')
+                // console.log(res)
                 that.unit_pianye_posList = res.data.data.unit_pianye_posList
                 that.unit_hongsi_posList = res.data.data.unit_hongsi_posList
                 that.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
@@ -119,15 +119,15 @@ export default {
                 that.unit_gengsi_posList = res.data.data.unit_gengsi_posList
                 that.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
             }, err => {
-                console.log('错误了')
-                console.log(err)
+                // console.log('错误了')
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
         show(index) {
             let path = this.form_list_content[index].storagePath
-            console.log(path)
-            window.open('http://localhost:8082/filestore/' + path, '_blank')
+            // console.log(path)
+            window.open('http://localhost:8080/eduonline/filestore/' + path, '_blank')
             // this.$Modal.info({
             //     title: 'User Info',
             //     content: `Name：${this.form_list_content[index].storagePath}<br>
@@ -140,16 +140,16 @@ export default {
             this.form_list_content.splice(index, 1)
             // console.log('index' + index)
             // console.log('paramId' + paramId)
-            axios.delete('http://localhost:8082/positionLearning/videoManage/deleteVideoInfo', {
+            axios.delete('http://localhost:8080/eduonline/positionLearning/videoManage/deleteVideoInfo', {
                 params: {
                     id: paramId,
                 },
             }).then(
                 res => {
-                    console.log(res)
+                    // console.log(res)
                 },
                 err => {
-                    console.log(err)
+                    // console.log(err)
                     this.$Message.error('后台服务出问题，请联系技术人员')
                 }
             )
@@ -167,8 +167,8 @@ export default {
                     title: this.title,
                 },
             }).then(res => {
-                console.log('成功了')
-                console.log(res)
+                // console.log('成功了')
+                // console.log(res)
                 that.total = res.data.data.length
                 that.form_total_content = res.data.data
                 that.form_list_content = that.form_total_content.slice(
@@ -176,8 +176,8 @@ export default {
                     that.page * that.pageSize
                 )
             }, err => {
-                console.log('错误了')
-                console.log(err)
+                // console.log('错误了')
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },

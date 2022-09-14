@@ -77,8 +77,8 @@ export default {
     methods: {
         show(index) {
             let path = this.form_list_content[index].storagePath
-            console.log(path)
-            window.open('http://localhost:8082/filestore/' + path, '_blank')
+            // console.log(path)
+            window.open('http://localhost:8080/eduonline/filestore/' + path, '_blank')
             // this.$Modal.info({
             //     title: 'User Info',
             //     content: `Name：${this.form_list_content[index].storagePath}<br>
@@ -91,16 +91,16 @@ export default {
             this.form_list_content.splice(index, 1)
             // console.log('index' + index)
             // console.log('paramId' + paramId)
-            axios.delete('http://localhost:8082/forum/coursewareManage/deleteCoursewareInfo', {
+            axios.delete('http://localhost:8080/eduonline/forum/coursewareManage/deleteCoursewareInfo', {
                 params: {
                     id: paramId,
                 },
             }).then(
                 res => {
-                    console.log(res)
+                    // console.log(res)
                 },
                 err => {
-                    console.log(err)
+                    // console.log(err)
                     this.$Message.error('后台服务出问题，请联系技术人员')
                 }
             )
@@ -117,8 +117,8 @@ export default {
                     title: this.title,
                 },
             }).then(res => {
-                console.log('成功了')
-                console.log(res)
+                // console.log('成功了')
+                // console.log(res)
                 that.total = res.data.data.length
                 that.form_total_content = res.data.data
                 that.form_list_content = that.form_total_content.slice(
@@ -126,8 +126,8 @@ export default {
                     that.page * that.pageSize
                 )
             }, err => {
-                console.log('错误了')
-                console.log(err)
+                // console.log('错误了')
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },

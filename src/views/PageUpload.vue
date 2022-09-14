@@ -101,8 +101,8 @@ export default {
                     'content-type': 'application/json',
                 },
             }).then(res => {
-                console.log('成功了')
-                console.log(res)
+                // console.log('成功了')
+                // console.log(res)
                 that.unit_pianye_posList = res.data.data.unit_pianye_posList
                 that.unit_hongsi_posList = res.data.data.unit_hongsi_posList
                 that.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
@@ -110,8 +110,8 @@ export default {
                 that.unit_gengsi_posList = res.data.data.unit_gengsi_posList
                 that.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
             }, err => {
-                console.log('错误了')
-                console.log(err)
+                // console.log('错误了')
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -119,31 +119,31 @@ export default {
         getDocFile(event) {
             this.file1 = event.target.files[0]
             this.filename1 = this.file1.name
-            console.log(this.file1.name)
+            // console.log(this.file1.name)
         },
         // 选取文件
         getProcessFile(event) {
             this.file2 = event.target.files[0]
             this.filename2 = this.file2.name
-            console.log(this.file2.name)
+            // console.log(this.file2.name)
         },
         // 选取文件
         getIndexFile(event) {
             this.file3 = event.target.files[0]
             this.filename3 = this.file3.name
-            console.log(this.file3.name)
+            // console.log(this.file3.name)
         },
         // 选取文件
         getSOCFile(event) {
             this.file4 = event.target.files[0]
             this.filename4 = this.file4.name
-            console.log(this.file4.name)
+            // console.log(this.file4.name)
         },
         // 选取文件
         getVidFile(event) {
             this.file5 = event.target.files[0]
             this.filename5 = this.file5.name
-            console.log(this.file5.name)
+            // console.log(this.file5.name)
         },
         // 上传文件 doc 作业指导书
         uploadDoc() {
@@ -170,12 +170,12 @@ export default {
                 data: formData,
             }).then(res => {
                 // console.log('成功了')
-                console.log(res)
+                // console.log(res)
                 this.loadingStatus1 = false
                 this.docServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -204,12 +204,12 @@ export default {
                 data: formData,
             }).then(res => {
                 // console.log('成功了')
-                console.log(res)
+                // console.log(res)
                 this.loadingStatus2 = false
                 this.docProcessServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -238,12 +238,12 @@ export default {
                 data: formData,
             }).then(res => {
                 // console.log('成功了')
-                console.log(res)
+                // console.log(res)
                 this.loadingStatus3 = false
                 this.docIndexServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -271,12 +271,12 @@ export default {
                 data: formData,
             }).then(res => {
                 // console.log('成功了')
-                console.log(res)
+                // console.log(res)
                 this.loadingStatus4 = false
                 this.socServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -303,12 +303,12 @@ export default {
                 data: formData,
             }).then(res => {
                 // console.log('成功了')
-                console.log(res)
+                // console.log(res)
                 this.loadingStatus5 = false
                 this.vidServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
                 // console.log('错误了')
-                console.log(err)
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },

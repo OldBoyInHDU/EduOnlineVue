@@ -207,8 +207,8 @@ export default {
                     'content-type': 'application/json',
                 },
             }).then(res => {
-                console.log('成功了')
-                console.log(res)
+                // console.log('成功了')
+                // console.log(res)
                 that.unit_pianye_posList = res.data.data.unit_pianye_posList
                 that.unit_hongsi_posList = res.data.data.unit_hongsi_posList
                 that.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
@@ -216,8 +216,8 @@ export default {
                 that.unit_gengsi_posList = res.data.data.unit_gengsi_posList
                 that.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
             }, err => {
-                console.log('错误了')
-                console.log(err)
+                // console.log('错误了')
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -233,8 +233,8 @@ export default {
                     pos: this.position,
                 },
             }).then(res => {
-                console.log('成功了')
-                console.log(res)
+                // console.log('成功了')
+                // console.log(res)
                 that.total = res.data.data.length
                 that.form_total_content = res.data.data
                 that.form_list_content = that.form_total_content.slice(
@@ -242,8 +242,8 @@ export default {
                     that.page * that.pageSize
                 )
             }, err => {
-                console.log('错误了')
-                console.log(err)
+                // console.log('错误了')
+                // console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
