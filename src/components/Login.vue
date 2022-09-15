@@ -66,8 +66,8 @@ export default {
             if (this.account === 'admin' && this.pwd === 'admin') {
                 this.isShowLoading = true
                 // 登陆成功 设置用户信息
-                sessionStorage.setItem('userImg', 'https://avatars3.githubusercontent.com/u/22117876?s=460&v=4')
-                sessionStorage.setItem('userName', '小明')
+                sessionStorage.setItem('userImg', 'userImg')
+                sessionStorage.setItem('userName', 'admin')
                 // 登陆成功 假设这里是后台返回的 token
                 sessionStorage.setItem('token', 'i_am_token')
                 this.$router.push({ path: this.redirect || '/' })

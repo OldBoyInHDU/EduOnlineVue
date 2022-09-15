@@ -95,7 +95,7 @@
 <!--                        </div>-->
                         <!-- 用户头像 -->
                         <div class="user-img-c">
-                            <img :src="userImg">
+                            <img src="../../public/logo_toc.png">
                         </div>
                         <!-- 下拉菜单 -->
                         <Dropdown trigger="click" @on-click="userOperate" @on-visible-change="showArrow">
