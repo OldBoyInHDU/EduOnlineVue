@@ -17,11 +17,11 @@
                 <OptionGroup label="5 梗丝">
                     <Option v-for="item in unit_gengsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
-                <OptionGroup label="6 残烟间">
-                    <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </OptionGroup>
-                <OptionGroup label="7 糖料厨房">
+                <OptionGroup label="6 糖料厨房">
                     <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </OptionGroup>
+                <OptionGroup label="7 残烟间">
+                    <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
             </Select>
             <Input v-model="title" placeholder="请输入文档标题" style="width: 300px;padding-left: 20px" clearable/>
