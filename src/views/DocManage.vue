@@ -20,6 +20,9 @@
                 <OptionGroup label="6 残烟间">
                     <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
+                <OptionGroup label="7 糖料厨房">
+                    <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </OptionGroup>
             </Select>
 <!--            <Select v-model="type" style="width:200px;padding-left: 20px" placeholder="请选择文档类别" clearable>-->
 <!--                <Option v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
@@ -58,6 +61,7 @@ export default {
             unit_pengzhang_posList: [],
             unit_gengsi_posList: [],
             unit_canyanjian_posList: [],
+            unit_tangliaochufang_posList: [],
             position: '',
             type: '',
             // 是否显示加载中
@@ -121,7 +125,7 @@ export default {
     },
     methods: {
         getPositionList() {
-            let that = this
+            // let that = this
             axios({
                 method: 'get',
                 url: 'position/getPositionList',
@@ -131,12 +135,13 @@ export default {
             }).then(res => {
                 // console.log('成功了')
                 // console.log(res)
-                that.unit_pianye_posList = res.data.data.unit_pianye_posList
-                that.unit_hongsi_posList = res.data.data.unit_hongsi_posList
-                that.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
-                that.unit_pengzhang_posList = res.data.data.unit_pengzhang_posList
-                that.unit_gengsi_posList = res.data.data.unit_gengsi_posList
-                that.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
+                this.unit_pianye_posList = res.data.data.unit_pianye_posList
+                this.unit_hongsi_posList = res.data.data.unit_hongsi_posList
+                this.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
+                this.unit_pengzhang_posList = res.data.data.unit_pengzhang_posList
+                this.unit_gengsi_posList = res.data.data.unit_gengsi_posList
+                this.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
+                this.unit_tangliaochufang_posList = res.data.data.unit_tangliaochufang_posList
             }, err => {
                 // console.log('错误了')
                 // console.log(err)

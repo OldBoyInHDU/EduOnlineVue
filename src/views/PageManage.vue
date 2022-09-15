@@ -5,7 +5,7 @@
                 <OptionGroup label="1 片叶">
                     <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
-                <OptionGroup label="2 烘丝">
+                <OptionGroup label="2 制丝">
                     <Option v-for="item in unit_hongsi_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
                 <OptionGroup label="3 掺配加香">
@@ -19,6 +19,9 @@
                 </OptionGroup>
                 <OptionGroup label="6 残烟间">
                     <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </OptionGroup>
+                <OptionGroup label="7 糖料厨房">
+                    <Option v-for="item in unit_tangliaochufang_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
             </Select>
 
@@ -137,6 +140,7 @@ export default {
                 //     label: '6-3',
                 // },
             ],
+            unit_tangliaochufang_posList: [],
             position: '',
             loading: false,
             page: 1, // 当前页
@@ -215,6 +219,7 @@ export default {
                 that.unit_pengzhang_posList = res.data.data.unit_pengzhang_posList
                 that.unit_gengsi_posList = res.data.data.unit_gengsi_posList
                 that.unit_canyanjian_posList = res.data.data.unit_canyanjian_posList
+                that.unit_tangliaochufang_posList = res.data.data.unit_tangliaochufang_posList
             }, err => {
                 // console.log('错误了')
                 // console.log(err)
