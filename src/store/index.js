@@ -97,7 +97,7 @@ const store = new Vuex.Store({
                 size: 18, // icon大小
                 type: 'md-arrow-forward', // icon类型
                 text: '制丝在线教育平台',
-                url: 'https://www.baidu.com',
+                url: 'http://localhost:8080/index.html',
                 isExternal: true, // 外链 跳到一个外部的 URL 页面
             },
             {

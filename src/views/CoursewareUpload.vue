@@ -4,7 +4,7 @@
             <Upload
                 :before-upload="beforeUpload"
                 type="drag"
-                action="http://localhost:8082/positionLearning/docUpload/uploadDoc">
+                action="http://localhost:8080/eduonline/forum/coursewareUpload/submitCoursewareInfo">
                 <div style="padding: 20px 0">
                     <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
                     <p>点击或拖拽文件至此<br>文档限制pdf格式，视频限制mp4格式(大小不超过200MB)</p>
@@ -72,7 +72,7 @@ export default {
             this.loadingStatus = true
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/forum/coursewareUpload/uploadCourseware',
+                url: 'forum/coursewareUpload/uploadCourseware',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -101,7 +101,7 @@ export default {
             formData.append('serverFileName', this.serverFileName)
             axios({
                 method: 'post',
-                url: 'http://localhost:8082/forum/coursewareUpload/submitCoursewareInfo',
+                url: 'forum/coursewareUpload/submitCoursewareInfo',
                 headers: {
                     'content-type': 'application/json',
                 },

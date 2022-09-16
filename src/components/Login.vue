@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             account: 'admin',
-            pwd: 'admin',
+            pwd: '',
             accountError: '',
             pwdError: '',
             isShowLoading: false,
@@ -44,14 +44,14 @@ export default {
     methods: {
         verifyAccount() {
             if (this.account !== 'admin') {
-                this.accountError = '账号为admin'
+                this.accountError = '账号错误，请输入正确账号'
             } else {
                 this.accountError = ''
             }
         },
         verifyPwd() {
-            if (this.pwd !== 'admin') {
-                this.pwdError = '密码为admin'
+            if (this.pwd !== 'zscj2022') {
+                this.pwdError = '密码错误，请输入正确密码'
             } else {
                 this.pwdError = ''
             }
@@ -63,7 +63,7 @@ export default {
 
         },
         submit() {
-            if (this.account === 'admin' && this.pwd === 'admin') {
+            if (this.account === 'admin' && this.pwd === 'zscj2022') {
                 this.isShowLoading = true
                 // 登陆成功 设置用户信息
                 sessionStorage.setItem('userImg', 'userImg')
@@ -73,11 +73,11 @@ export default {
                 this.$router.push({ path: this.redirect || '/' })
             } else {
                 if (this.account !== 'admin') {
-                    this.accountError = '账号为admin'
+                    this.accountError = '账号错误，请输入正确账号'
                 }
 
-                if (this.pwd !== 'admin') {
-                    this.pwdError = '密码为admin'
+                if (this.pwd !== 'zscj2022') {
+                    this.pwdError = '密码错误，请输入正确密码'
                 }
             }
         },
