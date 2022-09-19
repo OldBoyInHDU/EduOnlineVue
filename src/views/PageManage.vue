@@ -239,7 +239,7 @@ export default {
                 },
             }).then(res => {
                 // console.log('成功了')
-                // console.log(res)
+                console.log(res)
                 that.total = res.data.data.length
                 that.form_total_content = res.data.data
                 that.form_list_content = that.form_total_content.slice(
