@@ -353,6 +353,10 @@ export default {
             return isRight
         },
         submit() {
+            if (this.position == '' || this.position == null || this.position.length == 0) {
+                this.$Message.error('未选择工段岗位，请先选择工段岗位！')
+                return
+            }
             let formData = new FormData()
             formData.append('position', this.position)
             formData.append('docServerFileName', this.docServerFileName)

@@ -78,7 +78,11 @@ export default {
         show(index) {
             let path = this.form_list_content[index].storagePath
             // console.log(path)
-            window.open('http://localhost:8080/eduonline/filestore/' + path, '_blank')
+            if (path == '待补充' || path == null || path.length == 0) {
+                this.$Message.error('资料待补充')
+            } else {
+                window.open('http://localhost:8080/eduonline/filestore/' + path, '_blank')
+            }
             // this.$Modal.info({
             //     title: 'User Info',
             //     content: `Name：${this.form_list_content[index].storagePath}<br>

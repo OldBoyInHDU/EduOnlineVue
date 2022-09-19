@@ -95,6 +95,10 @@ export default {
             // }, 1500)
         },
         submit() {
+            if (this.serverFileName == '' || this.serverFileName == null || this.serverFileName.length == 0) {
+                this.$Message.error('课件上传未完成，请先上传课件！')
+                return
+            }
             let formData = new FormData()
             formData.append('position', this.position)
             formData.append('type', this.type)
