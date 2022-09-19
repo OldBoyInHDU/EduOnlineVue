@@ -1,7 +1,12 @@
 <template>
-    <div style="padding: 20px">
-        欢迎使用宁波卷烟厂制丝车间在线教育平台
+    <div class="header-background">
+        <img src="../assets/imgs/Web_development_Flatline.png"  />
+        <img src="../assets/imgs/World_wide_web_Flatline.png"  />
+        <div class="title">
+            <h1>欢迎使用宁波卷烟厂制丝车间在线教育后台管理系统</h1>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -25,6 +30,13 @@ export default {
 </script>
 
 <style scoped>
+.header-background {
+    /*position: absolute;*/
+    margin: auto;
+    text-align: center;
+}
+
+
 .home-container {
     padding: 10px;
     padding-top: 5px;
