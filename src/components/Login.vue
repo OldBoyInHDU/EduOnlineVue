@@ -18,11 +18,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'login',
     data() {
         return {
-            account: 'admin',
+            account: '',
             pwd: '',
             accountError: '',
             pwdError: '',
@@ -43,15 +45,15 @@ export default {
     },
     methods: {
         verifyAccount() {
-            if (this.account !== 'admin') {
-                this.accountError = '账号错误，请输入正确账号'
+            if (this.account == '') {
+                this.accountError = '请输入账号'
             } else {
                 this.accountError = ''
             }
         },
         verifyPwd() {
-            if (this.pwd !== 'zscj2022') {
-                this.pwdError = '密码错误，请输入正确密码'
+            if (this.pwd == '') {
+                this.pwdError = '请输入密码'
             } else {
                 this.pwdError = ''
             }
@@ -63,23 +65,30 @@ export default {
 
         },
         submit() {
-            if (this.account === 'admin' && this.pwd === 'zscj2022') {
-                this.isShowLoading = true
-                // 登陆成功 设置用户信息
-                sessionStorage.setItem('userImg', 'userImg')
-                sessionStorage.setItem('userName', 'admin')
-                // 登陆成功 假设这里是后台返回的 token
-                sessionStorage.setItem('token', 'i_am_token')
-                this.$router.push({ path: this.redirect || '/' })
-            } else {
-                if (this.account !== 'admin') {
-                    this.accountError = '账号错误，请输入正确账号'
+            let formData = new FormData()
+            formData.append('account', this.account)
+            formData.append('password', this.pwd)
+            axios.post('/login', formData).then(
+                res => {
+                    console.log(res)
+                    if (res.data.code == 200) {
+                        this.isShowLoading = true
+                        // 登陆成功 设置用户信息
+                        sessionStorage.setItem('userImg', 'userImg')
+                        sessionStorage.setItem('userName', res.data.data.username)
+                        // 登陆成功 假设这里是后台返回的 token
+                        sessionStorage.setItem('token', 'i_am_token')
+                        this.$router.push({ path: this.redirect || '/' })
+                    } else {
+                        this.accountError = '账号错误，请输入正确账号'
+                        this.pwdError = '密码错误，请输入正确密码'
+                    }
+                },
+                err => {
+                    // console.log(err)
+                    this.$Message.error(err.data)
                 }
-
-                if (this.pwd !== 'zscj2022') {
-                    this.pwdError = '密码错误，请输入正确密码'
-                }
-            }
+            )
         },
     },
 }
