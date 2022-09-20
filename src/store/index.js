@@ -20,7 +20,7 @@ const store = new Vuex.Store({
                 children: [
                     {
                         size: 18, // icon大小
-                        type: 'ios-document', // icon类型
+                        type: 'ios-cloud-upload', // icon类型
                         name: 'pageUpload',
                         text: '资料上传',
                         // url: 'https://www.baidu.com',
@@ -28,7 +28,7 @@ const store = new Vuex.Store({
                     },
                     {
                         size: 18, // icon大小
-                        type: 'ios-document', // icon类型
+                        type: 'ios-search', // icon类型
                         name: 'pageManage',
                         text: '资料查询',
                         // url: 'https://www.baidu.com',
