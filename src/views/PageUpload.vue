@@ -292,7 +292,7 @@ export default {
                 return
             }
             let formData = new FormData()
-            formData.append('file', this.file)
+            formData.append('file', uncheckedFile)
             this.loadingStatus5 = true
             axios({
                 method: 'post',
