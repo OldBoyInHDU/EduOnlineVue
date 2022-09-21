@@ -64,11 +64,22 @@ export default {
             this.filename = file.name
             this.file = file
             // 一定要return false 不然会直接上传
-            return false
+            return isRight
         },
         upload() {
+            let uncheckedFile = this.file
+            if (uncheckedFile == null) {
+                this.$Message.error('未选择文件！请先选择文件！')
+                return
+            }
+            let isRight = this.beforeUpload(uncheckedFile)
+            if (!isRight) {
+                this.$Message.error('请重新上传文件')
+                return
+            }
+            let checkedFile = uncheckedFile
             let formData = new FormData()
-            formData.append('file', this.file)
+            formData.append('file', checkedFile)
             this.loadingStatus = true
             axios({
                 method: 'post',
