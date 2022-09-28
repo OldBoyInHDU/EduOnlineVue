@@ -53,6 +53,14 @@ const store = new Vuex.Store({
                     },
                     {
                         size: 18, // icon大小
+                        type: 'ios-albums', // icon类型
+                        name: 'socManage',
+                        text: 'SOC管理',
+                        // url: 'https://www.baidu.com',
+                        // isExternal: true, // 外链 跳到一个外部的 URL 页面
+                    },
+                    {
+                        size: 18, // icon大小
                         type: 'ios-cloud-upload', // icon类型
                         name: 'videoUpload',
                         text: '视频上传',
@@ -97,7 +105,7 @@ const store = new Vuex.Store({
                 size: 18, // icon大小
                 type: 'md-arrow-forward', // icon类型
                 text: '制丝在线教育平台',
-                url: 'http://localhost:8080/index.html',
+                url: 'http://10.46.137.222:8080/index.html',
                 isExternal: true, // 外链 跳到一个外部的 URL 页面
             },
             {
@@ -107,68 +115,68 @@ const store = new Vuex.Store({
                 text: '单独的路由', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
                 hidden: true,
             },
-            {
-                text: '系统设置',
-                type: 'ios-settings',
-                hidden: true,
-                children: [
-                    {
-                        size: 18,
-                        type: 'ios-grid',
-                        name: 't1',
-                        text: '表格',
-                        // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
-                        hidden: true,
-                    },
-                    {
-                        size: 18,
-                        type: 'ios-notifications-outline',
-                        name: 'msg',
-                        text: '查看消息',
-                        hidden: true,
-                    },
-                    {
-                        size: 18,
-                        type: 'md-lock',
-                        name: 'password',
-                        text: '修改密码',
-                    },
-                    {
-                        size: 18,
-                        type: 'md-person',
-                        name: 'userinfo',
-                        text: '基本资料',
-                    },
-                    // {
-                    //     text: '三级菜单',
-                    //     type: 'ios-paper',
-                    //     children: [
-                    //         {
-                    //             type: 'ios-notifications-outline',
-                    //             name: 'msg',
-                    //             text: '查看消息',
-                    //         },
-                    //         {
-                    //             type: 'md-lock',
-                    //             name: 'password',
-                    //             text: '修改密码',
-                    //         },
-                    //         {
-                    //             type: 'md-person',
-                    //             name: 'userinfo',
-                    //             text: '基本资料',
-                    //         },
-                    //         {
-                    //             size: 18, // icon大小
-                    //             type: 'md-arrow-forward', // icon类型
-                    //             text: '外链',
-                    //             url: 'https://www.baidu.com',
-                    //             isExternal: true, // 外链 跳到一个外部的 URL 页面
-                    //         },
-                    //     ],
-                    // },
-                ],
-            },
+            // {
+            //     text: '系统设置',
+            //     type: 'ios-settings',
+            //     hidden: true,
+            //     children: [
+            //         {
+            //             size: 18,
+            //             type: 'ios-grid',
+            //             name: 't1',
+            //             text: '表格',
+            //             // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
+            //             hidden: true,
+            //         },
+            //         {
+            //             size: 18,
+            //             type: 'ios-notifications-outline',
+            //             name: 'msg',
+            //             text: '查看消息',
+            //             hidden: true,
+            //         },
+            //         {
+            //             size: 18,
+            //             type: 'md-lock',
+            //             name: 'password',
+            //             text: '修改密码',
+            //         },
+            //         {
+            //             size: 18,
+            //             type: 'md-person',
+            //             name: 'userinfo',
+            //             text: '基本资料',
+            //         },
+            //         // {
+            //         //     text: '三级菜单',
+            //         //     type: 'ios-paper',
+            //         //     children: [
+            //         //         {
+            //         //             type: 'ios-notifications-outline',
+            //         //             name: 'msg',
+            //         //             text: '查看消息',
+            //         //         },
+            //         //         {
+            //         //             type: 'md-lock',
+            //         //             name: 'password',
+            //         //             text: '修改密码',
+            //         //         },
+            //         //         {
+            //         //             type: 'md-person',
+            //         //             name: 'userinfo',
+            //         //             text: '基本资料',
+            //         //         },
+            //         //         {
+            //         //             size: 18, // icon大小
+            //         //             type: 'md-arrow-forward', // icon类型
+            //         //             text: '外链',
+            //         //             url: 'https://www.baidu.com',
+            //         //             isExternal: true, // 外链 跳到一个外部的 URL 页面
+            //         //         },
+            //         //     ],
+            //         // },
+            //     ],
+            // },
         ],
     },
     mutations: {
