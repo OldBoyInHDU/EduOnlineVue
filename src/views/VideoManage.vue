@@ -2,7 +2,7 @@
     <div class="home-container">
         <div class="searchParam" style="padding: 20px">
             <Select v-model="position" style="width:200px" placeholder="请选择岗位" clearable>
-                <OptionGroup label="1 片叶">
+                <OptionGroup label="1 制叶">
                     <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
                 <OptionGroup label="2 烘丝">

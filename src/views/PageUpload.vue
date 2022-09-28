@@ -25,7 +25,7 @@
         <Input v-model="vidServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
         <h3>工段岗位：</h3>
         <Select v-model="position" style="width:200px; margin: 20px" placeholder="请选择岗位" clearable>
-            <OptionGroup label="1 片叶">
+            <OptionGroup label="1 制叶">
                 <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
             <OptionGroup label="2 烘丝">
@@ -119,31 +119,31 @@ export default {
         getDocFile(event) {
             this.file1 = event.target.files[0]
             this.filename1 = this.file1.name
-            // console.log(this.file1.name)
+            console.log(this.file1.name)
         },
         // 选取文件
         getProcessFile(event) {
             this.file2 = event.target.files[0]
             this.filename2 = this.file2.name
-            // console.log(this.file2.name)
+            console.log(this.file2.name)
         },
         // 选取文件
         getIndexFile(event) {
             this.file3 = event.target.files[0]
             this.filename3 = this.file3.name
-            // console.log(this.file3.name)
+            console.log(this.file3.name)
         },
         // 选取文件
         getSOCFile(event) {
             this.file4 = event.target.files[0]
             this.filename4 = this.file4.name
-            // console.log(this.file4.name)
+            console.log(this.file4.name)
         },
         // 选取文件
         getVidFile(event) {
             this.file5 = event.target.files[0]
             this.filename5 = this.file5.name
-            // console.log(this.file5.name)
+            console.log(this.file5.name)
         },
         // 上传文件 doc 作业指导书
         uploadDoc() {
@@ -169,13 +169,13 @@ export default {
                 },
                 data: formData,
             }).then(res => {
-                // console.log('成功了')
-                // console.log(res)
+                console.log('成功了')
+                console.log(res)
                 this.loadingStatus1 = false
                 this.docServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
-                // console.log('错误了')
-                // console.log(err)
+                console.log('错误了')
+                console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -203,13 +203,13 @@ export default {
                 },
                 data: formData,
             }).then(res => {
-                // console.log('成功了')
-                // console.log(res)
+                console.log('成功了')
+                console.log(res)
                 this.loadingStatus2 = false
                 this.docProcessServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
-                // console.log('错误了')
-                // console.log(err)
+                console.log('错误了')
+                console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -237,13 +237,13 @@ export default {
                 },
                 data: formData,
             }).then(res => {
-                // console.log('成功了')
-                // console.log(res)
+                console.log('成功了')
+                console.log(res)
                 this.loadingStatus3 = false
                 this.docIndexServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
-                // console.log('错误了')
-                // console.log(err)
+                console.log('错误了')
+                console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -264,19 +264,19 @@ export default {
             this.loadingStatus4 = true
             axios({
                 method: 'post',
-                url: 'positionLearning/docUpload/uploadDoc',
+                url: 'positionLearning/socUpload/uploadSoc',
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
                 data: formData,
             }).then(res => {
-                // console.log('成功了')
-                // console.log(res)
+                console.log('成功了')
+                console.log(res)
                 this.loadingStatus4 = false
                 this.socServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
-                // console.log('错误了')
-                // console.log(err)
+                console.log('错误了')
+                console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
@@ -302,13 +302,13 @@ export default {
                 },
                 data: formData,
             }).then(res => {
-                // console.log('成功了')
-                // console.log(res)
+                console.log('成功了')
+                console.log(res)
                 this.loadingStatus5 = false
                 this.vidServerFileName = this.filename + ' / ' + res.data.data
             }, err => {
-                // console.log('错误了')
-                // console.log(err)
+                console.log('错误了')
+                console.log(err)
                 this.$Message.error('后台服务出问题，请联系技术人员')
             })
         },
