@@ -33,7 +33,9 @@ export default {
         }
     },
     created() {
-        this.bg.backgroundImage = 'url(' + require('../assets/imgs/bg0' + new Date().getDay() + '.jpg') + ')'
+        // this.bg.backgroundImage = 'url(' + require('../assets/imgs/bg0' + new Date().getDay() + '.jpg') + ')'
+        this.bg.backgroundImage = 'url(' + require('../assets/imgs/bg.jpg') + ')'
+        // this.bg.backgroundImage = 'url(../assets/imgs/DJI_0065.jpg)'
     },
     watch: {
         $route: {
@@ -103,7 +105,7 @@ export default {
     color: #fff;
 }
 .login-vue .container {
-    background: rgba(255, 255, 255, .5);
+    background: rgba(2, 93, 84, 0.8);
     width: 300px;
     text-align: center;
     border-radius: 10px;
