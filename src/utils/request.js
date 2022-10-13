@@ -4,12 +4,12 @@ import router from '@/router'
 import { showLoading, closeLoading } from '@/utils/loading'
 import { resetTokenAndClearUser } from '@/utils'
 
-const service = axios.create({
-    baseURL: window.location.origin,
+const request = axios.create({
+    baseURL: 'http://localhost:8080/eduonline',
     timeout: 60000,
 })
 
-service.interceptors.request.use(config => {
+request.interceptors.request.use(config => {
     showLoading()
     if (localStorage.getItem('token')) {
         config.headers.Authorization = localStorage.getItem('token')
@@ -18,12 +18,12 @@ service.interceptors.request.use(config => {
     return config
 }, (error) => Promise.reject(error))
 
-service.interceptors.response.use(response => {
+request.interceptors.response.use(response => {
     closeLoading()
     const res = response.data
     // 这里是接口处理的一个示范，可以根据自己的项目需求更改
     // 错误处理
-    if (res.code != 0 && res.msg) {
+    if (res.code != 200) {
         Message.error({
             content: res.msg,
         })
@@ -54,4 +54,4 @@ service.interceptors.response.use(response => {
     return Promise.reject(error)
 })
 
-export default service
+export default request

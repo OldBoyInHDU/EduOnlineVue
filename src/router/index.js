@@ -66,13 +66,13 @@ export const asyncRoutes = {
     docManage: {
         path: 'docManage',
         name: 'docManage',
-        meta: { title: '文档管理' },
+        meta: { title: '文档上传/管理' },
         component: () => import('../views/DocManage.vue'),
     },
     socManage: {
         path: 'socManage',
         name: 'socManage',
-        meta: { title: '文档管理' },
+        meta: { title: 'SOC上传/管理' },
         component: () => import('../views/SocManage.vue'),
     },
     videoUpload: {
@@ -84,7 +84,7 @@ export const asyncRoutes = {
     videoManage: {
         path: 'videoManage',
         name: 'videoManage',
-        meta: { title: '视频管理' },
+        meta: { title: '视频上传/管理' },
         component: () => import('../views/VideoManage.vue'),
     },
     coursewareUpload: {

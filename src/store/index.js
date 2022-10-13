@@ -31,6 +31,7 @@ const store = new Vuex.Store({
                         type: 'ios-search', // icon类型
                         name: 'pageManage',
                         text: '资料查询',
+                        hidden: true,
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },
@@ -47,7 +48,7 @@ const store = new Vuex.Store({
                         size: 18, // icon大小
                         type: 'ios-albums', // icon类型
                         name: 'docManage',
-                        text: '文档管理',
+                        text: '文档上传/管理',
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },
@@ -55,7 +56,7 @@ const store = new Vuex.Store({
                         size: 18, // icon大小
                         type: 'ios-albums', // icon类型
                         name: 'socManage',
-                        text: 'SOC管理',
+                        text: 'SOC上传/管理',
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },
@@ -73,7 +74,7 @@ const store = new Vuex.Store({
                         size: 18, // icon大小
                         type: 'logo-youtube', // icon类型
                         name: 'videoManage',
-                        text: '视频管理',
+                        text: '视频上传/管理',
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },
