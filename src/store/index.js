@@ -23,6 +23,7 @@ const store = new Vuex.Store({
                         type: 'ios-cloud-upload', // icon类型
                         name: 'pageUpload',
                         text: '资料上传',
+                        hidden: true,
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },

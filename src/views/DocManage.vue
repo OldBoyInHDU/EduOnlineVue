@@ -321,10 +321,11 @@ export default {
             }).then(
                 res => {
                     // console.log(res)
+                    this.$Message.success('删除成功！')
                 },
                 err => {
                     // console.log(err)
-                    this.$Message.error('后台服务出问题，请联系技术人员')
+                    this.$Message.error('删除失败，请联系技术人员')
                 }
             )
         },

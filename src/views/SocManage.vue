@@ -120,7 +120,7 @@ import axios from 'axios'
 import request from "@/utils/request";
 
 export default {
-    name: 'docManage',
+    name: 'socManage',
     data() {
         return {
             unit_public_posList: [],
@@ -271,12 +271,12 @@ export default {
             ).then(
                 res => {
                     console.log(res)
-                    that.$Message.success('文档上传成功')
+                    that.$Message.success('SOC文档上传成功')
                 }
             ).catch(
                 err => {
                     console.log(err)
-                    that.$Message.error('文档上传失败，请联系技术人员')
+                    that.$Message.error('SOC文档上传失败，请联系技术人员')
                 }
             )
         },
@@ -321,10 +321,11 @@ export default {
             }).then(
                 res => {
                     // console.log(res)
+                    this.$Message.success('删除成功！')
                 },
                 err => {
                     // console.log(err)
-                    this.$Message.error('后台服务出问题，请联系技术人员')
+                    this.$Message.error('删除失败，请联系技术人员')
                 }
             )
         },

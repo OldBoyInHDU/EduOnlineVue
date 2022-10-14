@@ -1,30 +1,10 @@
 <template>
     <div class="btn-box">
-<!--        {{filename1}}-->
-<!--        {{filename2}}-->
-<!--        {{filename3}}-->
-        <h3>作业指导书：</h3>
-        <input class="file-input" type="file" @change="getDocFile($event)" />
-        <Button type="primary" @click="uploadDoc" :loading="loadingStatus1">{{ loadingStatus1 ? '上传中' : '上传文件' }}</Button>
-        <Input v-model="docServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
-<!--        <h3>过程控制要求：</h3>-->
-<!--        <input class="file-input" type="file" @change="getProcessFile($event)" />-->
-<!--        <Button type="primary" @click="uploadProcess" :loading="loadingStatus2">{{ loadingStatus2 ? '上传中' : '上传文件' }}</Button>-->
-<!--        <Input v-model="docProcessServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>-->
-<!--        <h3>工艺质量指标：</h3>-->
-<!--        <input class="file-input" type="file" @change="getIndexFile($event)" />-->
-<!--        <Button type="primary" @click="uploadIndex" :loading="loadingStatus3">{{ loadingStatus3 ? '上传中' : '上传文件' }}</Button>-->
-<!--        <Input v-model="docIndexServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>-->
-        <h3>SOC文档：</h3>
-        <input class="file-input" type="file" @change="getSOCFile($event)" />
-        <Button type="primary" @click="uploadSOC" :loading="loadingStatus4">{{ loadingStatus4 ? '上传中' : '上传文件' }}</Button>
-        <Input v-model="socServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
-        <h3>教学视频：</h3>
-        <input class="file-input" type="file" @change="getVidFile($event)" />
-        <Button type="primary" @click="uploadVideo" :loading="loadingStatus5">{{ loadingStatus5 ? '上传中' : '上传文件' }}</Button>
-        <Input v-model="vidServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
         <h3>工段岗位：</h3>
         <Select v-model="position" style="width:200px; margin: 20px" placeholder="请选择岗位" clearable>
+            <OptionGroup label="0 公共">
+                <Option v-for="item in unit_public_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </OptionGroup>
             <OptionGroup label="1 制叶">
                 <Option v-for="item in unit_pianye_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
@@ -44,6 +24,21 @@
                 <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </OptionGroup>
         </Select>
+        <h3>岗位文件：</h3>
+        <input class="file-input" type="file" multiple accept="application/pdf" @change="getDocFile($event)" />
+        <Button type="primary" @click="uploadDoc" :loading="loadingStatus1">{{ loadingStatus1 ? '上传中' : '上传文件' }}</Button>
+        <Input v-model="docServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
+        <Icon type="ios-checkmark-circle" color="#19be6b" v-show="uploadStatus1"/>
+        <h3>SOC文档：</h3>
+        <input class="file-input" type="file" accept="application/pdf" @change="getSOCFile($event)" />
+        <Button type="primary" @click="uploadSOC" :loading="loadingStatus4">{{ loadingStatus4 ? '上传中' : '上传文件' }}</Button>
+        <Input v-model="socServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
+        <Icon type="ios-checkmark-circle" color="#19be6b" v-show="uploadStatus2"/>
+        <h3>教学视频：</h3>
+        <input class="file-input" type="file" accept="video/mp4" @change="getVidFile($event)" />
+        <Button type="primary" @click="uploadVideo" :loading="loadingStatus5">{{ loadingStatus5 ? '上传中' : '上传文件' }}</Button>
+        <Input v-model="vidServerFileName" placeholder="文件名称 / 服务器文件名称" style="width: 300px; padding-left: 30px" disabled/>
+        <Icon type="ios-checkmark-circle" color="#19be6b" v-show="uploadStatus3"/>
         <h3>岗位职责：</h3>
         <Input v-model="posResponsibility" type="textarea" :rows="4" placeholder="请输入岗位职责" style="padding: 20px"/>
 <!--        <divider />-->
@@ -58,6 +53,7 @@ export default {
     name: 'attendPoint',
     data() {
         return {
+            unit_public_posList: [],
             unit_pianye_posList: [],
             unit_hongsi_posList: [],
             unit_canpeijiaxiang_posList: [],
@@ -69,6 +65,9 @@ export default {
             loadingStatus3: false,
             loadingStatus4: false,
             loadingStatus5: false,
+            uploadStatus1: false,
+            uploadStatus2: false,
+            uploadStatus3: false,
             position: '',
             type: '',
             file1: null,
@@ -103,6 +102,7 @@ export default {
             }).then(res => {
                 // console.log('成功了')
                 // console.log(res)
+                that.unit_public_posList = res.data.data.unit_public_posList
                 that.unit_pianye_posList = res.data.data.unit_pianye_posList
                 that.unit_hongsi_posList = res.data.data.unit_hongsi_posList
                 that.unit_canpeijiaxiang_posList = res.data.data.unit_canpeijiaxiang_posList
@@ -117,9 +117,8 @@ export default {
         },
         // 选取文件
         getDocFile(event) {
-            this.file1 = event.target.files[0]
-            this.filename1 = this.file1.name
-            console.log(this.file1.name)
+            this.file1 = event.target.files
+            console.log(this.file1.length)
         },
         // 选取文件
         getProcessFile(event) {
@@ -147,19 +146,11 @@ export default {
         },
         // 上传文件 doc 作业指导书
         uploadDoc() {
-            let uncheckedFile = this.file1
-            if (uncheckedFile == null) {
-                this.$Message.error('未选择文件！请先选择文件！')
-                return
-            }
-            let isRight = this.beforeUploadDoc(uncheckedFile)
-            if (!isRight) {
-                this.$Message.error('请重新上传文件')
-                return
-            }
-            let checkedFile = uncheckedFile
+            let files = this.file1
             let formData = new FormData()
-            formData.append('file', checkedFile)
+            for (let i = 0; i < files.length; i++) {
+                formData.append('file', files[i])
+            }
             this.loadingStatus1 = true
             axios({
                 method: 'post',
@@ -353,7 +344,7 @@ export default {
             return isRight
         },
         submit() {
-            if (this.position == '' || this.position == null || this.position.length == 0) {
+            if (this.position === '' || this.position == null || this.position.length === 0) {
                 this.$Message.error('未选择工段岗位，请先选择工段岗位！')
                 return
             }
