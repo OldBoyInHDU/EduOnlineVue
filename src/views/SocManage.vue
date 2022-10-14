@@ -30,7 +30,7 @@
                     <Option v-for="item in unit_canyanjian_posList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </OptionGroup>
             </Select>
-            <Input v-model="title" placeholder="请输入文档标题" style="width: 300px;padding-left: 20px" clearable/>
+            <Input v-model="title" placeholder="请输入SOC文档标题" style="width: 300px;padding-left: 20px" clearable/>
             <span style="padding-left: 20px">
                 <Button type="primary" @click="search">查询</Button>
             </span>
@@ -75,7 +75,7 @@
                         <FormItem label="SOC文档" required prop="doc" :rules="{required: true, message: '岗位不能为空', trigger: 'blur'}">
                             <Upload
                                 ref="upload"
-                                :show-upload-list="true"
+                                :show-upload-list="showUploadListFlag"
                                 :format="['pdf']"
                                 :max-size="20480"
                                 :on-success="handleSuccess"
@@ -138,6 +138,7 @@ export default {
                 position: '',
                 uploadList: [],
             },
+            showUploadListFlag: true, // 是否显示上传文件的名称
             // 是否显示加载中
             loading: false,
             title: '', // 文档标题
@@ -225,10 +226,10 @@ export default {
             // console.log(res)
             // console.log('file:' + file.name)
             let that = this
-            let docStoragePath = '/soc/' + res.data
+            let socStoragePath = '/soc/' + res.data
             that.formItem.uploadList.push({
                 fileName: file.name,
-                storagePath: docStoragePath,
+                storagePath: socStoragePath,
             })
             // console.log(JSON.stringify(that.uploadList))
         },
@@ -272,11 +273,13 @@ export default {
                 res => {
                     console.log(res)
                     that.$Message.success('SOC文档上传成功')
+                    that.showUploadListFlag = false
                 }
             ).catch(
                 err => {
                     console.log(err)
                     that.$Message.error('SOC文档上传失败，请联系技术人员')
+                    that.showUploadListFlag = false
                 }
             )
         },

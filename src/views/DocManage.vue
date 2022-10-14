@@ -75,7 +75,7 @@
                         <FormItem label="文档" required prop="doc" :rules="{required: true, message: '岗位不能为空', trigger: 'blur'}">
                             <Upload
                                 ref="upload"
-                                :show-upload-list="true"
+                                :show-upload-list="showUploadListFlag"
                                 :format="['pdf']"
                                 :max-size="20480"
                                 :on-success="handleSuccess"
@@ -138,6 +138,7 @@ export default {
                 position: '',
                 uploadList: [],
             },
+            showUploadListFlag: true,
             // 是否显示加载中
             loading: false,
             title: '', // 文档标题
@@ -272,11 +273,13 @@ export default {
                 res => {
                     console.log(res)
                     that.$Message.success('文档上传成功')
+                    that.showUploadListFlag = false
                 }
             ).catch(
                 err => {
                     console.log(err)
                     that.$Message.error('文档上传失败，请联系技术人员')
+                    that.showUploadListFlag = false
                 }
             )
         },

@@ -91,13 +91,13 @@ const store = new Vuex.Store({
                         name: 'coursewareUpload',
                         text: '课件上传',
                         // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
-                        // hidden: true,
+                        hidden: true,
                     },
                     {
                         size: 18, // icon大小
                         type: 'ios-albums', // icon类型
                         name: 'coursewareManage',
-                        text: '课件管理',
+                        text: '课件上传/管理',
                         // url: 'https://www.baidu.com',
                         // isExternal: true, // 外链 跳到一个外部的 URL 页面
                     },
