@@ -91,18 +91,26 @@
                 </Modal>
             </div>
             <div class="form-content" style="padding-top: 20px">
-                <Table border :columns="form_header" :data="form_list_content" :loading="loading" height="600">
+                <Table border :columns="form_header" :data="form_list_content" :loading="loading" height="600" ref="table">
                     <template slot-scope="{ row }" slot="name">
                         <strong>{{ row.name }}</strong>
                     </template>
                     <template slot-scope="{ row, index }" slot="action">
                         <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">预览</Button>
-                        <Button type="error" size="small" @click="remove(index)">删除</Button>
+                        <Button type="error" size="small" @click="confirm(index)">删除</Button>
                     </template>
                 </Table>
                 <br>
                 <Page :total="total" :current="page" @on-change="changePage" :page-size="pageSize" show-elevator/>
             </div>
+            <Modal
+                v-model="confirmModal"
+                title="删除确认"
+                @on-ok="remove()"
+                ok-text="删除"
+                @on-cancel="cancel">
+                <p>确定删除《{{toDeleteDoc}}》文档吗？</p>
+            </Modal>
         </div>
     </div>
 </template>
@@ -173,6 +181,9 @@ export default {
             ], // 表头
             form_list_content: [], // 当前展示的数据
             form_total_content: [], // 一次性请求的所有数据
+            confirmModal: false,
+            toDeleteDoc: '',
+            delDocIndex: -1,
         }
     },
     methods: {
@@ -229,7 +240,9 @@ export default {
             // console.log(JSON.stringify(that.uploadList))
         },
         exportData() {
-
+            this.$refs.table.exportCsv({
+                filename: '表格数据'
+            })
         },
         submit() {
             let that = this
@@ -258,15 +271,19 @@ export default {
             ).then(
                 res => {
                     console.log(res)
+                    that.$Message.success('文档上传成功')
                 }
             ).catch(
                 err => {
                     console.log(err)
+                    that.$Message.error('文档上传失败，请联系技术人员')
                 }
             )
         },
         cancel() {
-
+            let that = this
+            that.confirmModal = false
+            this.$Message.info('已取消')
         },
         show(index) {
             let path = this.form_list_content[index].storagePath
@@ -274,7 +291,7 @@ export default {
             if (path == '待补充' || path == null || path.length == 0) {
                 this.$Message.error('资料待补充')
             } else {
-                window.open('http://localhost:8080/eduonline/filestore/' + path, '_blank')
+                window.open('http://localhost:8080/eduonline/filestore' + path, '_blank')
             }
             // this.$Modal.info({
             //     title: 'User Info',
@@ -283,7 +300,16 @@ export default {
             //                 // Address：${this.form_list_content[index].address}`,
             // })
         },
-        remove(index) {
+        confirm(index) {
+            let that = this
+            that.confirmModal = true
+            that.toDeleteDoc = that.form_list_content[index].docFileName
+            that.delDocIndex = index
+            // that.remove(index)
+        },
+        remove() {
+            let index = this.delDocIndex
+            // console.log(index)
             let paramId = this.form_list_content[index].id
             this.form_list_content.splice(index, 1)
             // console.log('index' + index)
