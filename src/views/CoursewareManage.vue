@@ -19,12 +19,12 @@
                     @on-cancel="cancel">
                     <Form :model="formItem" :label-width="120">
                         <FormItem label="培训名称" required prop="seminar" :rules="{required: true, message: '岗位不能为空', trigger: 'blur'}">
-                            <Input v-model="formItem.seminar" placeholder="请输入培训名称"></Input>
+                            <Input v-model="formItem.seminar" placeholder="请输入培训名称" style="width: 250px"></Input>
                         </FormItem>
                         <FormItem label="课件" required prop="courseware" :rules="{required: true, message: '岗位不能为空', trigger: 'blur'}">
                             <Upload
                                 ref="upload"
-                                :show-upload-list="showUploadListFlag"
+                                :show-upload-list="true"
                                 :format="['pdf']"
                                 :max-size="20480"
                                 :on-success="handleSuccess"
@@ -76,7 +76,7 @@ export default {
             loading: false,
             seminar: '', // 会议名称
             title: '', // 文档标题
-            showUploadListFlag: true,
+            // showUploadListFlag: true,
             page: 1, // 当前页
             pageSize: 10, // 一页展示10条数据
             total: 0, // 数据总条数
@@ -126,7 +126,9 @@ export default {
     methods: {
         resetForm() {
             let that = this
-            that.formItem.seminar = ''
+            this.$refs.upload.clearFiles()
+            that.formItem.position = ''
+            that.formItem.uploadList = []
         },
         uploadCoursewareBtn() {
             let that = this
@@ -184,13 +186,13 @@ export default {
                 res => {
                     console.log(res)
                     that.$Message.success('课件上传成功')
-                    that.showUploadListFlag = false
+                    // that.showUploadListFlag = false
                 }
             ).catch(
                 err => {
                     console.log(err)
                     that.$Message.error('课件上传失败，请联系技术人员')
-                    that.showUploadListFlag = false
+                    // that.showUploadListFlag = false
                 }
             )
         },

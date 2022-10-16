@@ -75,7 +75,7 @@
                         <FormItem label="教学视频" required prop="vid" :rules="{required: true, message: '视频不能为空', trigger: 'blur'}">
                             <Upload
                                 ref="upload"
-                                :show-upload-list="showUploadListFlag"
+                                :show-upload-list="true"
                                 :format="['mp4']"
                                 :max-size="204800"
                                 :on-success="handleSuccess"
@@ -138,7 +138,7 @@ export default {
                 position: '',
                 uploadList: [],
             },
-            showUploadListFlag: true,
+            // showUploadListFlag: true,
             // 是否显示加载中
             loading: false,
             title: '', // 文档标题
@@ -215,7 +215,9 @@ export default {
         },
         resetForm() {
             let that = this
+            this.$refs.upload.clearFiles()
             that.formItem.position = ''
+            that.formItem.uploadList = []
         },
         uploadVidBtn() {
             let that = this
@@ -273,13 +275,13 @@ export default {
                 res => {
                     console.log(res)
                     that.$Message.success('视频上传成功')
-                    that.showUploadListFlag = false
+                    // that.showUploadListFlag = false
                 }
             ).catch(
                 err => {
                     console.log(err)
                     that.$Message.error('视频上传失败，请联系技术人员')
-                    that.showUploadListFlag = false
+                    // that.showUploadListFlag = false
                 }
             )
         },

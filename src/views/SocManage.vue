@@ -75,7 +75,7 @@
                         <FormItem label="SOC文档" required prop="doc" :rules="{required: true, message: '岗位不能为空', trigger: 'blur'}">
                             <Upload
                                 ref="upload"
-                                :show-upload-list="showUploadListFlag"
+                                :show-upload-list="true"
                                 :format="['pdf']"
                                 :max-size="20480"
                                 :on-success="handleSuccess"
@@ -138,7 +138,7 @@ export default {
                 position: '',
                 uploadList: [],
             },
-            showUploadListFlag: true, // 是否显示上传文件的名称
+            //showUploadListFlag: true, // 是否显示上传文件的名称
             // 是否显示加载中
             loading: false,
             title: '', // 文档标题
@@ -215,7 +215,9 @@ export default {
         },
         resetForm() {
             let that = this
+            this.$refs.upload.clearFiles()
             that.formItem.position = ''
+            that.formItem.uploadList = []
         },
         uploadSocBtn() {
             let that = this
@@ -273,13 +275,13 @@ export default {
                 res => {
                     console.log(res)
                     that.$Message.success('SOC文档上传成功')
-                    that.showUploadListFlag = false
+                    // that.showUploadListFlag = false
                 }
             ).catch(
                 err => {
                     console.log(err)
                     that.$Message.error('SOC文档上传失败，请联系技术人员')
-                    that.showUploadListFlag = false
+                    // that.showUploadListFlag = false
                 }
             )
         },
